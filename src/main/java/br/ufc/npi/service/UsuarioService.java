@@ -42,8 +42,14 @@ public class UsuarioService {
 		return usuarioRepositorio.findByEmail(email);
 	}
 
-	public Usuario logar(String email, String senha) {
-		return usuarioRepositorio.findByEmailAndSenha(email, criptografar.criptografarSenha(senha));
+	public Usuario logar(String login, String senha) {
+		Usuario usuario = usuarioRepositorio.findByLogin(login);
+		if (usuario != null) {
+			if (criptografar.criptografarSenha(senha).equals(usuario.getSenha())) {
+				return usuario;
+			}
+		}
+		return null;
 	}
 
 }

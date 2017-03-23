@@ -15,4 +15,7 @@ public interface ObjetoRepositorio extends JpaRepository<Objeto, Integer> {
 
 	@Query("from Objeto o where o.emprestado = false")
 	List<Objeto> objetosDisponiveis();
+	
+	@Query("from Objeto o where o.emprestado = true")
+	List<Objeto> objetosEmprestados();
 }
