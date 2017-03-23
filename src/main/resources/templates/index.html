@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<link href="/webjars/materializecss/0.97.7/css/materialize.css"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+<title>ManagerLoan</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m6 offset-m3">
+				<div class="card">
+					<div class="card-content">
+					<div th:if="${msg}" class="row-center">
+							<div class="chip green white-text">
+								<span th:text="${msg}"></span>
+							</div>
+						</div>
+						<span class="card-title black-text">Login</span>
+						<form>
+							<div class="row">
+								<div class="input-field col s12">
+									<input placeholder="Login" id="firstname" type="text"
+										class="validate" /> <label for="firstname" class="active">Login</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input placeholder="Senha" id="lastname" type="password"
+										class="validate" /> <label for="lastname" class="active">Senha</label>
+								</div>
+							</div>
+							<div class="center-align">
+								<button type="submit" class="waves-effect waves-light btn">
+									Login</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+				<div class="center-align">
+					<a href="/usuario/cadastro">Cadastro</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+</html>

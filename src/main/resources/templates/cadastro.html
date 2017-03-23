@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<link href="/webjars/materializecss/0.97.7/css/materialize.css"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+<title>ManagerLoan</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m6 offset-m3">
+				<div class="card">
+
+					<div class="card-content">
+						<div th:if="${erro}" class="row-center">
+							<div class="chip red white-text">
+								<span th:text="${erro}"></span>
+							</div>
+						</div>
+						<span class="card-title black-text">Cadastro</span>
+						<form th:action="@{/usuario/salvar}" th:object="${usuario}"
+							method="POST">
+							<div class="row">
+								<input type="hidden" th:field="*{id}" />
+								<div class="input-field col s12">
+									<input placeholder="Nome" type="text" class="validate"
+										id="nome" th:field="*{nome}" /> <label for="firstname"
+										class="active">Nome</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input placeholder="E-mail" type="text" class="validate"
+										id="email" th:field="*{email}" /> <label class="active">E-mail</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input placeholder="Login" type="text" class="validate"
+										id="login" th:field="*{login}" /> <label class="active">Login</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input placeholder="Senha" type="password" class="validate"
+										id="senha" th:field="*{senha}" /> <label class="active">Senha</label>
+								</div>
+							</div>
+							<div class="center-align">
+								<button type="submit" class="waves-effect waves-light btn">
+									Cadastrar</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+				<div class="center-align">
+					<a href="/usuario/login">Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
+</html>
