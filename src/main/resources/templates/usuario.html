@@ -15,14 +15,14 @@
 
 	<!-- Dropdown Structure -->
 	<ul id="dropdown" class="dropdown-content">
-		<li><a th:href="@{/usuario/logout}">Sair</a></li>
+		<li><a th:href="@{/home/logout}">Sair</a></li>
 	</ul>
 	<nav>
 		<div class="nav-wrapper">
 			<ul class="right hide-on-med-and-down">
 				<li><a th:href="@{/usuario/menu}">Inicio</a></li>
-				<li><a href="#">Amigos</a></li>
-				<li><a href="#">Objetos</a></li>
+				<li><a th:href="@{/amigos/}">Amigos</a></li>
+				<li><a th:href="@{/objetos/}">Objetos</a></li>
 				<!-- Dropdown Trigger -->
 				<li><a class="dropdown-button" data-activates="dropdown">Encerrar
 						Sessão<i class="material-icons right">&vee;</i>
@@ -35,24 +35,27 @@
 			<div class="col s12">
 				<div class="card">
 					<div class="card-content">
-
 						<span class="card-title black-text">Empréstimo</span>
-						<form method="post" th:action="@{/usuario/login}">
+						<form method="post" th:action="@{/objetos/emprestar}">
 							<div class="row">
 								<div class=" col s12">
-									<label>Escolha um objeto</label> <select
-										class="browser-default" name="idJogadorSemTime">
+									<label>Escolha um objeto disponível para empréstimo</label> <select
+										class="browser-default" name="objeto">
 										<option value="" disabled="disabled" selected="selected">Escolha
 											um Objeto</option>
+										<option th:name="${objeto}" th:each="objeto : ${objetosDisponiveis}" th:value="${objeto.id}"
+											th:text="${objeto.nome}"></option>
 									</select>
 								</div>
 							</div>
 							<div class="row">
 								<div class=" col s12">
 									<label>Escolha um Amigo</label> <select class="browser-default"
-										name="idJogadorSemTime">
+										name="amigo">
 										<option value="" disabled="disabled" selected="selected">Escolha
 											um Amigo</option>
+											<option th:name="${amigo}" th:each="amigo : ${amigos}" th:value="${amigo.id}"
+											th:text="${amigo.nome}"></option>
 									</select>
 								</div>
 							</div>
@@ -77,16 +80,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Objeto</td>
-						<td>Amigo</td>
+					<tr th:each="objeto : ${objetosEmprestados}">
+						<td th:text="${objeto.nome}"></td>
+						<td th:text="${objeto.amigo.nome}"></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
 	</div>
-
 
 
 </body>

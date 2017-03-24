@@ -27,23 +27,34 @@ public class AmigoService {
 		usuarioRepositorio.save(u);
 	}
 
-	public void removerAmigo(Usuario u, Amigo amigo) {
-		Amigo a = amigoRepositorio.findOne(amigo.getId());
+	public Amigo buscarPorId(int id) {
+		Amigo amigo = amigoRepositorio.findOne(id);
+		if (amigo != null) {
+			return amigo;
+		}
+		return null;
+	}
+
+	public void removerAmigo(Usuario u, int id) {
+		Amigo amigo = this.buscarPorId(id);
 		Usuario usuario = usuarioRepositorio.findOne(u.getId());
 
-		usuario.getAmigos().remove(a);
-
-		for (int i = 0; i < usuario.getObjetos().size(); i++) {
-			if (usuario.getObjetos().get(i).getAmigo().equals(a)) {
-				Objeto objeto = objetoRepositorio.findOne(usuario.getObjetos().get(i).getId());
-				objeto.setEmprestado(false);
-				objeto.setAmigo(null);
-				objetoRepositorio.save(objeto);
-			}
-		}
 		
-		usuarioRepositorio.save(usuario);
-		amigoRepositorio.delete(a);
+
+		if (amigo != null && usuario != null) {
+			usuario.getAmigos().remove(amigo);
+			for (int i = 0; i < usuario.getObjetos().size(); i++) {
+				if (usuario.getObjetos().get(i).getAmigo().equals(amigo)) {
+					Objeto objeto = objetoRepositorio.findOne(usuario.getObjetos().get(i).getId());
+					objeto.setEmprestado(false);
+					objeto.setAmigo(null);
+					objetoRepositorio.save(objeto);
+				}
+			}
+
+			usuarioRepositorio.save(usuario);
+			amigoRepositorio.delete(amigo);
+		}
 	}
 
 }

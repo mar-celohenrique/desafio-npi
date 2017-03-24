@@ -2,6 +2,7 @@ package br.ufc.npi.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import br.ufc.npi.bean.Objeto;
 import br.ufc.npi.bean.Usuario;
@@ -13,9 +14,9 @@ public interface ObjetoRepositorio extends JpaRepository<Objeto, Integer> {
 
 	List<Objeto> findByAmigo(Amigo amigo);
 
-	@Query("from Objeto o where o.emprestado = false")
-	List<Objeto> objetosDisponiveis();
+	@Query("from Objeto o where o.usuario = :#{#usuario} and o.emprestado = false")
+	List<Objeto> objetosDisponiveis(@Param("usuario") Usuario usuario);
 	
-	@Query("from Objeto o where o.emprestado = true")
-	List<Objeto> objetosEmprestados();
+	@Query("from Objeto o where o.usuario = :#{#usuario} and o.emprestado = true")
+	List<Objeto> objetosEmprestados(@Param("usuario") Usuario usuario);
 }

@@ -17,7 +17,7 @@
 			<div class="col s12 m6 offset-m3">
 				<div class="card">
 					<div class="card-content">
-					<div th:if="${msg}" class="row-center">
+						<div th:if="${msg}" class="row-center">
 							<div class="chip green white-text">
 								<span th:text="${msg}"></span>
 							</div>
@@ -28,17 +28,17 @@
 							</div>
 						</div>
 						<span class="card-title black-text">Login</span>
-						<form method="post" th:action="@{/usuario/login}">
+						<form method="post" th:action="@{/home/efetuarLogin}">
 							<div class="row">
 								<div class="input-field col s12">
 									<input placeholder="Login" th:name="login" type="text"
-										class="validate" /> <label  class="active">Login</label>
+										class="validate" /> <label class="active">Login</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Senha"  type="password" th:name="senha"
-										class="validate" /> <label  class="active">Senha</label>
+									<input placeholder="Senha" type="password" th:name="senha"
+										class="validate" /> <label class="active">Senha</label>
 								</div>
 							</div>
 							<div class="center-align">
@@ -50,7 +50,7 @@
 
 				</div>
 				<div class="center-align">
-					<a href="/usuario/cadastro">Cadastro</a>
+					<a th:href="@{/cadastro}">Cadastro</a>
 				</div>
 			</div>
 		</div>
