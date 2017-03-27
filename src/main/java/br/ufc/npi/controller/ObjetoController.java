@@ -97,7 +97,7 @@ public class ObjetoController {
 		if (usuario != null) {
 			modelAndView = new ModelAndView("redirect:/usuario/menu");
 			modelAndView.addObject("amigos", usuario.getAmigos());
-			objetoService.emprestarObjeto(objeto, amigo);
+			objetoService.emprestarObjeto(objeto, amigo, usuario);
 			return modelAndView;
 		} else {
 			modelAndView = new ModelAndView("permissao");

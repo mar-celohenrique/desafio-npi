@@ -15,7 +15,7 @@
 
 	<!-- Dropdown Structure -->
 	<ul id="dropdown" class="dropdown-content">
-		<li><a th:href="@{/home/logout}">Sair</a></li>
+		<li><a th:href="@{/login/logout}">Sair</a></li>
 	</ul>
 	<nav>
 		<div class="nav-wrapper">
@@ -43,8 +43,9 @@
 										class="browser-default" name="objeto">
 										<option value="" disabled="disabled" selected="selected">Escolha
 											um Objeto</option>
-										<option th:name="${objeto}" th:each="objeto : ${objetosDisponiveis}" th:value="${objeto.id}"
-											th:text="${objeto.nome}"></option>
+										<option id="objetoSelecionado" th:name="${objeto}"
+											th:each="objeto : ${objetosDisponiveis}"
+											th:value="${objeto.id}" th:text="${objeto.nome}"></option>
 									</select>
 								</div>
 							</div>
@@ -54,14 +55,15 @@
 										name="amigo">
 										<option value="" disabled="disabled" selected="selected">Escolha
 											um Amigo</option>
-											<option th:name="${amigo}" th:each="amigo : ${amigos}" th:value="${amigo.id}"
+										<option id="amigoSelecionado" th:name="${amigo}"
+											th:each="amigo : ${amigos}" th:value="${amigo.id}"
 											th:text="${amigo.nome}"></option>
 									</select>
 								</div>
 							</div>
 							<div class="center-align">
-								<button class="btn waves-effect waves-light" type="submit"
-									name="action">Emprestar</button>
+								<button id="botaoSubmeter" class="btn waves-effect waves-light"
+									type="submit" name="action" disabled="disabled">Emprestar</button>
 							</div>
 						</form>
 					</div>
@@ -92,6 +94,13 @@
 
 
 </body>
+<script type="text/javascript">
+	if (document.getElementById("objetoSelecionado").value != null) {
+		if (document.getElementById("amigoSelecionado").value != null) {
+			document.getElementById("botaoSubmeter").disabled = false;
+		}
+	}
+</script>
 <script src="/webjars/jquery/2.2.4/jquery.js"></script>
 <script src="/webjars/materializecss/0.97.7/js/materialize.js"></script>
 </html>

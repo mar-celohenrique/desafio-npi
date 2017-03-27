@@ -14,13 +14,13 @@ import br.ufc.npi.bean.Usuario;
 import br.ufc.npi.service.UsuarioService;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@RequestMapping("/login")
+	@RequestMapping("/")
 	public ModelAndView index(@RequestParam(required = false) String msg, @RequestParam(required = false) String erro) {
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject(new Usuario());
@@ -48,7 +48,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout")
 	public String efetuarLogout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/home/login";
+		return "redirect:/login/";
 	}
 	
 }

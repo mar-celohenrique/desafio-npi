@@ -8,11 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 import br.ufc.npi.bean.Usuario;
 
 @Controller
-@RequestMapping("/")
 public class IndexController {
+	
 	@RequestMapping("/")
 	public String index() {
-		return "redirect:/home/login";
+		return "redirect:/login/";
 	}
 	
 	@RequestMapping("/cadastro")
