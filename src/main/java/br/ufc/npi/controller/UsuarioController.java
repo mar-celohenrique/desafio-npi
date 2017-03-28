@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import br.ufc.npi.bean.Usuario;
 import br.ufc.npi.service.ObjetoService;
+import br.ufc.npi.service.SecurityService;
 import br.ufc.npi.service.UsuarioService;
 
 @Controller
@@ -18,12 +20,13 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private ObjetoService objetoService;
-	
 
-	
+	@Autowired
+	private SecurityService securityService;
+
 	@RequestMapping(value = "/salvar", method = RequestMethod.POST)
 	public ModelAndView salvar(Usuario usuario) {
 		ModelAndView modelAndView = null;
@@ -40,11 +43,12 @@ public class UsuarioController {
 			modelAndView.addObject("erro", erro);
 			return modelAndView;
 		}
-		modelAndView = new ModelAndView("redirect:/usuario/login");
+		modelAndView = new ModelAndView("redirect:/usuario/menu");
 		modelAndView.addObject("msg", "Cadastrado com sucesso!");
+		securityService.autologin(usuario.getLogin(),usuario.getSenha());
+
 		return modelAndView;
 	}
-
 
 	@RequestMapping("/menu")
 	public ModelAndView menuUsuario(HttpSession session) {

@@ -79,12 +79,17 @@
 					<tr>
 						<th>Nome</th>
 						<th>Amigo</th>
+						<th>Devolução</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="objeto : ${objetosEmprestados}">
 						<td th:text="${objeto.nome}"></td>
 						<td th:text="${objeto.amigo.nome}"></td>
+						<td><a class="waves-effect waves-teal btn-flat"
+							th:href="@{/objetos/devolucao/{id}(id=${objeto.id})}">Confirmar
+								Devolução</a></td>
+
 					</tr>
 				</tbody>
 			</table>

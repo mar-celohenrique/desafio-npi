@@ -1,6 +1,7 @@
 package br.ufc.npi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.ufc.npi.bean.Usuario;
@@ -14,6 +15,9 @@ public class UsuarioService {
 	private UsuarioRepositorio usuarioRepositorio;
 	@Autowired
 	private Criptografia criptografar;
+	
+	@Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public String salvar(Usuario usuario) {
 		if (this.buscarPorLogin(usuario.getLogin()) != null) {
@@ -21,7 +25,7 @@ public class UsuarioService {
 		} else if (this.buscarPorEmail(usuario.getEmail()) != null) {
 			return "email";
 		}
-		usuario.setSenha(criptografar.criptografarSenha(usuario.getSenha()));
+		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
 		usuarioRepositorio.save(usuario);
 		return "sucesso";
 	}
@@ -42,14 +46,5 @@ public class UsuarioService {
 		return usuarioRepositorio.findByEmail(email);
 	}
 
-	public Usuario logar(String login, String senha) {
-		Usuario usuario = usuarioRepositorio.findByLogin(login);
-		if (usuario != null) {
-			if (criptografar.criptografarSenha(senha).equals(usuario.getSenha())) {
-				return usuario;
-			}
-		}
-		return null;
-	}
 
 }

@@ -29,22 +29,6 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-
-	@RequestMapping(value = "/efetuarLogin", method = RequestMethod.POST)
-	public ModelAndView login(Login loginForm, HttpSession session) {
-		ModelAndView modelAndView = null;
-		Usuario usuario = usuarioService.logar(loginForm.getLogin(), loginForm.getSenha());
-		if (usuario != null) {
-			session.setAttribute("usuarioLogado", usuario);
-			modelAndView = new ModelAndView("redirect:/usuario/menu");
-			return modelAndView;
-		} else {
-			modelAndView = new ModelAndView("redirect:/usuario/login");
-			modelAndView.addObject("erro", "Dados inconsistentes!");
-			return modelAndView;
-		}
-	}
-	
 	@RequestMapping(value = "/logout")
 	public String efetuarLogout(HttpSession session) {
 		session.invalidate();

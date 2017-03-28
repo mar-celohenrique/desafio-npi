@@ -80,7 +80,7 @@ public class ObjetoController {
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 		ModelAndView modelAndView = null;
 		if (usuario != null) {
-			modelAndView = new ModelAndView("redirect:/objetos/");
+			modelAndView = new ModelAndView("redirect:/usuario/menu");
 			modelAndView.addObject("amigos", usuario.getAmigos());
 			objetoService.devolucao(id);
 			return modelAndView;

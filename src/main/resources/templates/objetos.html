@@ -67,7 +67,6 @@
 						<th>Descrição</th>
 						<th>Status</th>
 						<th>Excluir</th>
-						<th>Devolvido?</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,10 +78,6 @@
 						<td><a th:if="${objetos.size() > 0}"
 							class="waves-effect waves-teal btn-flat"
 							th:href="@{/objetos/excluir/{id}(id=${objeto.id})}">Excluir</a></td>
-						<td><a th:if="${objeto.emprestado == true}"
-							class="waves-effect waves-teal btn-flat"
-							th:href="@{/objetos/devolucao/{id}(id=${objeto.id})}">Confirmar Devolução</a></td>
-							<td th:if="${objeto.emprestado == false}"> - </td>
 					</tr>
 				</tbody>
 			</table>

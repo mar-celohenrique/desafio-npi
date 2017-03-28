@@ -28,16 +28,16 @@
 							</div>
 						</div>
 						<span class="card-title black-text">Login</span>
-						<form method="post" th:action="@{/login/efetuarLogin}">
+						<form method="post" th:action="@{/login}">
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Login" th:name="login" type="text"
+									<input placeholder="Login" th:name="username" type="text"
 										class="validate" /> <label class="active">Login</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Senha" type="password" th:name="senha"
+									<input placeholder="Senha" type="password" th:name="password"
 										class="validate" /> <label class="active">Senha</label>
 								</div>
 							</div>
