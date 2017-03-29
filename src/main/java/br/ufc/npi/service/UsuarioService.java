@@ -5,7 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.ufc.npi.bean.Usuario;
-import br.ufc.npi.criptografia.Criptografia;
 import br.ufc.npi.repositorio.UsuarioRepositorio;
 
 @Service
@@ -13,8 +12,6 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	@Autowired
-	private Criptografia criptografar;
 	
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;

@@ -1,4 +1,4 @@
-package br.ufc.npi;
+package br.ufc.npi.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -25,9 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/index", "/login/**", "/cadastro", "/webjars/**", "/usuario/salvar")
-				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login/").permitAll().and()
-				.logout().permitAll();
+		http.authorizeRequests().antMatchers("/").authenticated()
+				.antMatchers("/index", "/cadastro", "/webjars/**", "/usuario/salvar").permitAll().anyRequest()
+				.authenticated().and().formLogin().loginProcessingUrl("/login").loginPage("/login").permitAll().and()
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 	}
 
 	@Autowired

@@ -28,17 +28,21 @@
 							</div>
 						</div>
 						<span class="card-title black-text">Login</span>
+						
+						
 						<form method="post" th:action="@{/login}">
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Login" th:name="username" type="text"
-										class="validate" /> <label class="active">Login</label>
+									<input placeholder="Login" id="username" name="username"
+										type="text" class="validate" /> <label for="username"
+										class="active">Login</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12">
-									<input placeholder="Senha" type="password" th:name="password"
-										class="validate" /> <label class="active">Senha</label>
+									<input placeholder="Senha" id="password" name="password"
+										type="password" class="validate" autocomplete="off" /> <label
+										class="active" for="password">Senha</label>
 								</div>
 							</div>
 							<div class="center-align">
@@ -46,6 +50,8 @@
 									Login</button>
 							</div>
 						</form>
+						
+						
 					</div>
 
 				</div>
